@@ -7,10 +7,12 @@
 </script>
 
 <main>
-  <h1>Students</h1>
-  {#each students as student}
-    <StudentCard {student} />
-  {/each}
+  <section class="grid-container">
+    <h1>Students</h1>
+    {#each students as student}
+      <StudentCard {student} />
+    {/each}
+  </section>
 </main>
 
 <style>
@@ -30,19 +32,11 @@
 
   main {
     padding: 30px;
-    display: grid;
-    grid-template-areas: 'heading heading heading';
     background-color: var(--background-color);
-    gap: 20px;
-    margin: 0 auto;
-    width: 100svw;
-    height: 100svh;
-    text-align: center;
   }
 
   h1 {
     grid-area: heading;
-    text-align: left;
     font-family: var(--font-family-heading);
     font-size: var(--font-size-lg);
     color: var(--heading-color);
@@ -50,5 +44,30 @@
     letter-spacing: -2%;
     width: 140px;
     height: 39px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 322px);
+    grid-template-areas: 'heading heading heading';
+    gap: 20px;
+    margin: 0 auto;
+    width: fit-content;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 322px);
+      grid-template-areas: 'heading heading';
+    }
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 322px);
+      grid-template-areas: 'heading';
+    }
   }
 </style>
