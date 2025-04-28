@@ -11,7 +11,7 @@
 
 <article>
   <h2>{student.name}</h2>
-  <div>
+  <div class="content">
     <StudentPropValue title="Age" value={student.age} />
     <StudentPropValue title="Avg score" value={student.averageScore} />
     <StudentPropValue title="Active" value={student.activeLabel} />
@@ -19,3 +19,36 @@
     <StudentPropValue title="ID" value={student.id} />
   </div>
 </article>
+
+<style>
+  article {
+    width: 322px;
+    height: 244px;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: var(--white);
+    box-shadow: 0px 6px 20px 0px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    font-family: var(--font-family-card);
+    line-height: 100%;
+    text-align: -4%;
+    color: var(--heading-color);
+    height: 29px;
+    text-align: left;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    line-height: 100%;
+    text-align: left;
+  }
+</style>

@@ -22,7 +22,7 @@
     --white: #ffffff;
     --black: #000000;
     --font-family-heading: 'Tahoma';
-    --font-card: 'Verdana';
+    --font-family-card: 'Verdana';
     --font-size-lg: 32px;
     --font-size-md: 24px;
     --font-size-base: 20px;
