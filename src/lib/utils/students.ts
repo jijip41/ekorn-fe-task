@@ -1,4 +1,5 @@
 import type { StudentDataItem } from '../data';
+import { getObjectValues } from './object';
 
 export type Student = {
   id: string;
@@ -67,8 +68,4 @@ function getAverageScores(scores: number[]) {
   return Math.round(
     scores.reduce((acc, curr) => acc + curr, 0) / scores.length,
   );
-}
-
-export function getObjectValues<T extends object>(obj: T): Array<T[keyof T]> {
-  return Object.values(obj);
 }
