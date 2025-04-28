@@ -21,6 +21,11 @@
     --text-title-color: #6f626b;
     --white: #ffffff;
     --black: #000000;
+    --font-family-heading: 'Tahoma';
+    --font-card: 'Verdana';
+    --font-size-lg: 32px;
+    --font-size-md: 24px;
+    --font-size-base: 20px;
   }
 
   main {
@@ -38,5 +43,12 @@
   h1 {
     grid-area: heading;
     text-align: left;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    color: var(--heading-color);
+    line-height: 100%;
+    letter-spacing: -2%;
+    width: 140px;
+    height: 39px;
   }
 </style>
