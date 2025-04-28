@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Student } from '../utils/students';
+  import StudentPropValue from './StudentPropValue.svelte';
 
   type Props = {
     student: Student;
@@ -10,11 +11,11 @@
 
 <article>
   <h2>{student.name}</h2>
-  <ul>
-    <li>Age: {student.age}</li>
-    <li>Average score: {student.averageScore}</li>
-    <li>Active: {student.activeLabel}</li>
-    <li>Passed: {student.passedLabel}</li>
-    <li>ID: {student.id}</li>
-  </ul>
+  <div>
+    <StudentPropValue title="Age" value={student.age} />
+    <StudentPropValue title="Avg score" value={student.averageScore} />
+    <StudentPropValue title="Active" value={student.activeLabel} />
+    <StudentPropValue title="Passed" value={student.passedLabel} />
+    <StudentPropValue title="ID" value={student.id} />
+  </div>
 </article>
