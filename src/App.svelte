@@ -4,10 +4,21 @@
   import { transformStudents, type Student } from './lib/utils/students';
 
   const students: Student[] = transformStudents(studentsData);
+
+  let isSorted = $state(false);
+  let isFiltered = $state(false);
 </script>
 
 <main>
   <section class="grid-container">
+    <div class="panel">
+      <button onclick={() => (isSorted = !isSorted)}>
+        {isSorted ? 'Back to Original' : 'Sort by Name'}</button
+      >
+      <button onclick={() => (isFiltered = !isFiltered)}>
+        {isFiltered ? 'Show All Students' : 'Show only Active Students'}
+      </button>
+    </div>
     <h1>Students</h1>
     {#each students as student}
       <StudentCard {student} />
@@ -49,7 +60,9 @@
   .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 322px);
-    grid-template-areas: 'heading heading heading';
+    grid-template-areas:
+      'heading heading heading'
+      'panel   panel   panel';
     gap: 20px;
     margin: 0 auto;
     width: fit-content;
@@ -57,17 +70,41 @@
     margin: 0 auto;
   }
 
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-area: panel;
+    width: 322px;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: var(--white);
+    border-radius: 5px;
+    border: solid 2px var(--black);
+  }
+
+  button:hover {
+    box-shadow: 0px 2px 4px 0px var(--shadow-color);
+    font-weight: 700;
+  }
+
   @media (max-width: 1024px) {
     .grid-container {
       grid-template-columns: repeat(2, 322px);
-      grid-template-areas: 'heading heading';
+      grid-template-areas:
+        'heading heading'
+        'panel   panel   ';
     }
   }
 
   @media (max-width: 768px) {
     .grid-container {
       grid-template-columns: repeat(1, 322px);
-      grid-template-areas: 'heading';
+      grid-template-areas:
+        'heading'
+        'panel';
     }
   }
 </style>
