@@ -7,21 +7,43 @@
 
   let isSorted = $state(false);
   let isFiltered = $state(false);
+
+  let updatedStudents = $state(students);
+
+  function setStudents() {
+    let filteredStudents = isFiltered
+      ? [...students].filter(stu => stu.activeLabel === 'Yes')
+      : students;
+    let sortedStudents = isSorted
+      ? [...filteredStudents].sort((a, b) => a.name.localeCompare(b.name))
+      : filteredStudents;
+    updatedStudents = sortedStudents;
+  }
 </script>
 
 <main>
   <section class="grid-container">
     <div class="panel">
-      <button onclick={() => (isSorted = !isSorted)}>
+      <button
+        onclick={() => {
+          isSorted = !isSorted;
+          setStudents();
+        }}
+      >
         {isSorted ? 'Back to Original' : 'Sort by Name'}</button
       >
-      <button onclick={() => (isFiltered = !isFiltered)}>
+      <button
+        onclick={() => {
+          isFiltered = !isFiltered;
+          setStudents();
+        }}
+      >
         {isFiltered ? 'Show All Students' : 'Show only Active Students'}
       </button>
     </div>
     <h1>Students</h1>
-    {#each students as student}
-      <StudentCard {student} />
+    {#each updatedStudents as _, i}
+      <StudentCard bind:student={updatedStudents[i]} />
     {/each}
   </section>
 </main>

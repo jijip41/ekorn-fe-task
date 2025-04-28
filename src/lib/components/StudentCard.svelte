@@ -6,7 +6,7 @@
     student: Student;
   };
 
-  let { student }: Props = $props();
+  let { student = $bindable() }: Props = $props();
 </script>
 
 <article>
