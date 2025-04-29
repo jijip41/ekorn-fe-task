@@ -20,7 +20,7 @@ After reviewing the requirements, I planned to implement the Figma design throug
 
 - I initially thought I could use the `$effect` store to update the students and rerender the list when sort/filter buttons were clicked. However, this led to an infinite rerender loop because `updatedStudents` kept changing. I realised I could instead update the `updatedStudents` array by using a function to set the state, which worked well.
 - As this is my first time using Svelte and I'm still learning, there may be better practices to achieve the same result.
-- If I had more time, I would have created a separate component for the buttons panel.
+- ~~If I had more time, I would have created a separate component for the buttons panel~~ - Done! I thought I would need some time to learn more about managing state in a Svelte App, but I was able to achieve this by binding a `updatedStudents` prop.
 
 ---
 
