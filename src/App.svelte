@@ -1,47 +1,18 @@
 <script lang="ts" module>
+  import Panel from './lib/components/Panel.svelte';
   import StudentCard from './lib/components/StudentCard.svelte';
   import { studentsData } from './lib/data';
   import { transformStudents, type Student } from './lib/utils/students';
 
   const students: Student[] = transformStudents(studentsData);
 
-  let isSorted = $state(false);
-  let isFiltered = $state(false);
-
   let updatedStudents = $state(students);
-
-  function setStudents() {
-    let filteredStudents = isFiltered
-      ? [...students].filter(stu => stu.activeLabel === 'Yes')
-      : students;
-    let sortedStudents = isSorted
-      ? [...filteredStudents].sort((a, b) => a.name.localeCompare(b.name))
-      : filteredStudents;
-    updatedStudents = sortedStudents;
-  }
 </script>
 
 <main>
   <section class="grid-container">
-    <div class="panel">
-      <button
-        onclick={() => {
-          isSorted = !isSorted;
-          setStudents();
-        }}
-      >
-        {isSorted ? 'Back to Original' : 'Sort by Name'}</button
-      >
-      <button
-        onclick={() => {
-          isFiltered = !isFiltered;
-          setStudents();
-        }}
-      >
-        {isFiltered ? 'Show All Students' : 'Show only Active Students'}
-      </button>
-    </div>
     <h1>Students</h1>
+    <Panel {students} bind:updatedStudents />
     {#each updatedStudents as _, i}
       <StudentCard bind:student={updatedStudents[i]} />
     {/each}
@@ -90,26 +61,6 @@
     width: fit-content;
     height: 100%;
     margin: 0 auto;
-  }
-
-  .panel {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    grid-area: panel;
-    width: 322px;
-  }
-
-  button {
-    cursor: pointer;
-    background-color: var(--white);
-    border-radius: 5px;
-    border: solid 2px var(--black);
-  }
-
-  button:hover {
-    box-shadow: 0px 2px 4px 0px var(--shadow-color);
-    font-weight: 700;
   }
 
   @media (max-width: 1024px) {
