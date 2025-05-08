@@ -17,19 +17,18 @@
     font-size: var(--font-size-base);
     font-family: var(--font-family-card);
     line-height: 100%;
-    font-size: 20px;
     height: 15px;
     display: flex;
     justify-content: space-between;
   }
 
   .title {
-    font-weight: 400;
-    color: var(--text-title-color);
+    font-weight: var(--font-weight-base);
+    color: var(--title-color);
   }
 
   .value {
-    font-weight: 700;
+    font-weight: var(--font-weight-lg);
     text-align: right;
     color: var(--black);
   }

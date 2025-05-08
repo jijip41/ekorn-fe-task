@@ -24,18 +24,18 @@
   article {
     width: 322px;
     height: 244px;
-    padding: 20px;
+    padding: var(--spacing-md);
     border-radius: 6px;
     background-color: var(--white);
     box-shadow: 0px 6px 20px 0px var(--shadow-color);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-md);
   }
 
   h2 {
     font-size: var(--font-size-md);
-    font-weight: 700;
+    font-weight: var(--font-weight-lg);
     font-family: var(--font-family-card);
     line-height: 100%;
     text-align: -4%;
@@ -47,7 +47,7 @@
   .content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-md);
     line-height: 100%;
     text-align: left;
   }

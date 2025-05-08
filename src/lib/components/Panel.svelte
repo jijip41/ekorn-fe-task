@@ -47,7 +47,7 @@
   .panel {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--spacing-sm);
     grid-area: panel;
     width: 322px;
   }
