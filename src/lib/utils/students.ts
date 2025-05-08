@@ -70,6 +70,10 @@ function getAllScores(scores: StudentDataItem['scores']): number[] {
 }
 
 function getAverageScore(scores: number[]) {
+  if (scores.length === 0) {
+    return 0;
+  }
+
   return Math.round(
     scores.reduce((acc, curr) => acc + curr, 0) / scores.length,
   );
