@@ -24,6 +24,7 @@
   main {
     padding: var(--spacing-lg);
     background-color: var(--background-color);
+    min-height: 100svh;
   }
 
   h1 {
@@ -45,7 +46,7 @@
     gap: 20px;
     margin: 0 auto;
     width: fit-content;
-    height: 100%;
+    height: fit-content;
     margin: 0 auto;
   }
 
