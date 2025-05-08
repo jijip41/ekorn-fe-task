@@ -1,15 +1,8 @@
 import type { StudentDataItem } from '../data';
+import type { Student } from '../type';
 import { getObjectValues } from './object';
 
-export type Student = {
-  id: string;
-  name: string;
-  age: number;
-  averageScore: number;
-  passedLabel: 'Yes' | 'No';
-  activeLabel: 'Yes' | 'No';
-};
-
+// Transforms raw data into a structured format I need to render the student card.
 export function transformStudents(
   students: readonly StudentDataItem[],
 ): Student[] {
@@ -23,11 +16,23 @@ export function transformStudents(
       id: id.toString(),
       name: getName(firstName, lastName),
       age: getAge(birthdate),
-      averageScore: getAverageScores(allScores),
+      averageScore: getAverageScore(allScores),
       passedLabel: isPassed ? 'Yes' : 'No',
       activeLabel: isActive ? 'Yes' : 'No',
     };
   });
+}
+
+export function filterAndSortStudentsList(
+  students: Student[],
+  { isSorted, isFiltered }: { isSorted: boolean; isFiltered: boolean },
+): Student[] {
+  let filtered = isFiltered
+    ? students.filter(stu => stu.activeLabel === 'Yes')
+    : students;
+  return isSorted
+    ? [...filtered].sort((a, b) => a.name.localeCompare(b.name))
+    : filtered;
 }
 
 function getName(
@@ -64,7 +69,7 @@ function getAllScores(scores: StudentDataItem['scores']): number[] {
   return getObjectValues(scores);
 }
 
-function getAverageScores(scores: number[]) {
+function getAverageScore(scores: number[]) {
   return Math.round(
     scores.reduce((acc, curr) => acc + curr, 0) / scores.length,
   );

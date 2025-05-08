@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { filterAndSortStudents, type Student } from '../utils/students';
+  import type { Student } from '../type';
+  import { filterAndSortStudentsList } from '../utils/students';
   import Button from './Button.svelte';
 
   type Props = {
@@ -19,7 +20,7 @@
   const FILTERED_LABEL = 'Show All Students';
 
   function setStudents() {
-    updatedStudents = filterAndSortStudents(students, panelState);
+    updatedStudents = filterAndSortStudentsList(students, panelState);
   }
 
   let sortLabel = $state(SORT_LABEL_DEFAULT);

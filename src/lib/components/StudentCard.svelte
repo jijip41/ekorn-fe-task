@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Student } from '../utils/students';
+  import type { Student } from '../type';
   import StudentPropValue from './StudentPropValue.svelte';
 
   type Props = {

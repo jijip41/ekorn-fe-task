@@ -2,7 +2,8 @@
   import Panel from './lib/components/Panel.svelte';
   import StudentCard from './lib/components/StudentCard.svelte';
   import { studentsData } from './lib/data';
-  import { transformStudents, type Student } from './lib/utils/students';
+  import type { Student } from './lib/type';
+  import { transformStudents } from './lib/utils/students';
 
   const students: Student[] = transformStudents(studentsData);
 
