@@ -6,6 +6,28 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* colours */
+  --background-color: #f7f3ed;
+  --heading-color: #4b3d47;
+  --shadow-color: #56574b24;
+  --title-color: #6f626b;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* spacing */
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 30px;
+
+  /* font */
+  --font-family-heading: 'Tahoma';
+  --font-family-card: 'Verdana';
+  --font-size-lg: 2rem;
+  --font-size-md: 1.5rem;
+  --font-size-base: 1.25rem;
+  --font-weight-base: 400;
+  --font-weight-lg: 700;
 }
 
 *,
