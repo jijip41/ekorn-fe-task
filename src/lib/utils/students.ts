@@ -35,14 +35,14 @@ export function filterAndSortStudentsList(
     : filtered;
 }
 
-function getName(
+export function getName(
   firstName: StudentDataItem['firstName'],
   lastName: StudentDataItem['lastName'],
 ): Student['name'] {
   return `${firstName} ${lastName}`;
 }
 
-function getAge(dateOfBirth: StudentDataItem['birthdate']): number {
+export function getAge(dateOfBirth: StudentDataItem['birthdate']): number {
   const birthDate = new Date(dateOfBirth);
   const currentDate = new Date();
 
@@ -65,11 +65,11 @@ function getAge(dateOfBirth: StudentDataItem['birthdate']): number {
   return age;
 }
 
-function getAllScores(scores: StudentDataItem['scores']): number[] {
+export function getAllScores(scores: StudentDataItem['scores']): number[] {
   return getObjectValues(scores);
 }
 
-function getAverageScore(scores: number[]) {
+export function getAverageScore(scores: number[]) {
   if (scores.length === 0) {
     return 0;
   }
