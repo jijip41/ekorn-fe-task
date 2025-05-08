@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { Student } from '../utils/students';
+  import { filterAndSortStudents, type Student } from '../utils/students';
+  import Button from './Button.svelte';
 
   type Props = {
     students: Student[];
@@ -7,39 +8,40 @@
   };
 
   let { students, updatedStudents = $bindable() }: Props = $props();
+  let panelState = $state({
+    isSorted: false,
+    isFiltered: false,
+  });
 
-  let isSorted = $state(false);
-  let isFiltered = $state(false);
+  const SORT_LABEL_DEFAULT = 'Sort by Name';
+  const SORTED_LABEL = 'Back to Original';
+  const FILTER_LABEL_DEFAULT = 'Show only Active Students';
+  const FILTERED_LABEL = 'Show All Students';
 
   function setStudents() {
-    let filteredStudents = isFiltered
-      ? [...students].filter(stu => stu.activeLabel === 'Yes')
-      : students;
-    let sortedStudents = isSorted
-      ? [...filteredStudents].sort((a, b) => a.name.localeCompare(b.name))
-      : filteredStudents;
-    updatedStudents = sortedStudents;
+    updatedStudents = filterAndSortStudents(students, panelState);
+  }
+
+  let sortLabel = $state(SORT_LABEL_DEFAULT);
+  let filterLabel = $state(FILTER_LABEL_DEFAULT);
+
+  function setSort() {
+    panelState.isSorted = !panelState.isSorted;
+    setStudents();
+    sortLabel = panelState.isSorted ? SORTED_LABEL : SORT_LABEL_DEFAULT;
+  }
+
+  function setFilter() {
+    panelState.isFiltered = !panelState.isFiltered;
+    setStudents();
+    filterLabel = panelState.isFiltered ? FILTERED_LABEL : FILTER_LABEL_DEFAULT;
   }
 </script>
 
-<div class="panel">
-  <button
-    onclick={() => {
-      isSorted = !isSorted;
-      setStudents();
-    }}
-  >
-    {isSorted ? 'Back to Original' : 'Sort by Name'}</button
-  >
-  <button
-    onclick={() => {
-      isFiltered = !isFiltered;
-      setStudents();
-    }}
-  >
-    {isFiltered ? 'Show All Students' : 'Show only Active Students'}
-  </button>
-</div>
+<section class="panel">
+  <Button label={sortLabel} onclick={setSort} />
+  <Button label={filterLabel} onclick={setFilter} />
+</section>
 
 <style>
   .panel {
@@ -48,17 +50,5 @@
     gap: 10px;
     grid-area: panel;
     width: 322px;
-  }
-
-  button {
-    cursor: pointer;
-    background-color: var(--white);
-    border-radius: 5px;
-    border: solid 2px var(--black);
-  }
-
-  button:hover {
-    box-shadow: 0px 2px 4px 0px var(--shadow-color);
-    font-weight: 700;
   }
 </style>
