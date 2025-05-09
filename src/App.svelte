@@ -14,8 +14,8 @@
   <section class="grid-container">
     <h1>Students</h1>
     <Panel {students} bind:updatedStudents />
-    {#each updatedStudents as _, i (updatedStudents[i])}
-      <StudentCard bind:student={updatedStudents[i]} />
+    {#each updatedStudents as student}
+      <StudentCard {student} />
     {/each}
   </section>
 </main>
